@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NM Timer</title>
+</head>
+<body>
+  <h1>NM Respawn Timer</h1>
+
+  <label>
+    ToD (HH:MM:SS):
+    <input id="tod" value="05:23:38">
+  </label>
+  <br>
+
+  <label>
+    Offset (MM:SS):
+    <input id="offset" value="07:35">
+  </label>
+  <br><br>
+
+  <button onclick="startTimer()">Start Timer</button>
+
+  <p id="targetDisplay"></p>
+  <p id="statusDisplay"></p>
+  <h3>NM Offsets <h3>
+  <p> Demonic Tiphia : 7:35 <p>
+  <script>
+    function startTimer() {
+      const todStr = document.getElementById('tod').value.trim();
+      const offsetStr = document.getElementById('offset').value.trim();
+
+      const [todH, todM, todS] = todStr.split(':').map(Number);
+      const [offM, offS] = offsetStr.split(':').map(Number);
+
+      const now = new Date();
+      let target = new Date(
+        now.getFullYear(), now.getMonth(), now.getDate(),
+        todH, todM, todS
+      );
+      target = new Date(target.getTime() + (offM * 60 + offS) * 1000);
+
+      if (target < now) {
+        target.setDate(target.getDate() + 1);
+      }
+
+      const targetTimeStr = target.toTimeString().split(' ')[0];
+      document.getElementById('targetDisplay').textContent =
+        "Expected pop time: " + targetTimeStr;
+      document.getElementById('statusDisplay').textContent = "Timer running...";
+
+      const timer = setInterval(() => {
+        const current = new Date();
+        if (current >= target) {
+          clearInterval(timer);
+          document.getElementById('statusDisplay').textContent = "POP TIME!";
+          const audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+          audio.play();
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
