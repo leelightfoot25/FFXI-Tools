@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>NM Timer</title>
-  <style>
-    table {
+	<link rel="stylesheet" href="styles.css" />
+    <!--
+	table {
       border-collapse: collapse;
       width: 70%;
       margin-top: 20px;
@@ -18,69 +19,87 @@
     th {
       background-color: #ddd;
     }
-  </style>
+	-->
 </head>
 <body>
-  <h2>NM Respawn Timer</h2>
-	<h4> Mob1 </h4>
-  <label>
-    ToD (HH:MM:SS):
-    <input id="tod" value="05:23:38">
-  </label>
-  <br>
+	<header class="page-header"> 
+		<h2>NM Respawn Timer</h2>
+	</header>
+	<main>
+		  <div class="div-container">
+		  <div class="div-left">
+			<h4> Mob1 </h4>
+		  <label>
+			ToD (HH:MM:SS):
+			<input id="tod" value="05:23:38">
+		  </label>
+		  <br>
 
-  <label>
-    Offset (MM:SS):
-    <input id="offset" value="07:05">
-  </label>
-  <br><br>
+		  <label>
+			Offset (MM:SS):
+			<input id="offset" value="07:05">
+		  </label>
+		  <br><br>
 
-  <button onclick="startTimer()">Start Timer</button>
+		  <button onclick="startTimer()">Start Timer</button>
 
-  <h3 id="targetDisplay"></h3>
-  <p id="statusDisplay"></p>
-  
-  <h4> Mob2 </h4>
-  <label>
-    ToD (HH:MM:SS):
-    <input id="tod2" value="05:23:38">
-  </label>
-  <br>
+		  <h3 id="targetDisplay"></h3>
+		  <p id="statusDisplay"></p>
+		  </div>
+		 <div class="div-right"> 
+		  <h4> Mob2 </h4>
+		  <label>
+			ToD (HH:MM:SS):
+			<input id="tod2" value="05:23:38">
+		  </label>
+		  <br>
 
-  <label>
-    Offset (MM:SS):   
-    <input id="offset2" value="05:35">
-  </label>
-  <br><br>
+		  <label>
+			Offset (MM:SS):   
+			<input id="offset2" value="05:35">
+		  </label>
+		  <br><br>
 
-  <button onclick="startTimer2()">Start Timer</button>
+		  <button onclick="startTimer2()">Start Timer</button>
 
-  <h3 id="targetDisplay2"></h3>
-  <p id="statusDisplay2"></p>
-  
- 
-  <h2>NM Respawn Data</h2>
-
-	<table>
-	  <tr>
-		<th>NM</th>
-		<th>Respawn Window Open</th>
-		<th>Placeholder Mob</th>
-		<th>Placeholder ID(s)</th>
-		<th>Offset 1</th>
-		<th>Offset 2</th>
-	  </tr>
-
-	  <tr>
-		<td>Demonic Tiphia</td>
-		<td>02:00</td>
-		<td>Wespe</td>
-		<td>10C</td>
-		<td>7:05</td>
-		<td></td>
-	  </tr>
-
-	</table>
+		  <h3 id="targetDisplay2"></h3>
+		  <p id="statusDisplay2"></p>
+		 </div> 
+		 </div>
+		 <div class="page-header">
+		  <h2>NM Respawn Reference Lookup</h2>
+			<section class="table-section">
+            <div class="table-wrapper">
+				<table>
+					<thead>
+					  <tr>
+						<th>NM</th>
+						<th>Respawn Window Open</th>
+						<th>Placeholder Mob</th>
+						<th>Placeholder ID(s)</th>
+						<th>Offset 1</th>
+						<th>Offset 2</th>
+					  </tr>
+					</thead>
+					<thead>
+					  <tr>
+						<td>Demonic Tiphia</td>
+						<td>02:00</td>
+						<td>Wespe</td>
+						<td>10C</td>
+						<td>7:05</td>
+						<td></td>
+					  </tr>
+					</thead>
+				</table>
+			</div>
+		</section>
+		</div>
+	</main>
+	<footer class="page-footer">
+        <p>Drop this <code>index.html</code> in the same folder as <code>styles.css</code> and open it in your browser.</p>
+		<p>Lee Lightfoot<sup>&trade;</sup></p>
+    </footer>
   <script>
     function startTimer() {
       const todStr = document.getElementById('tod').value.trim();
